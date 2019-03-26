@@ -1,0 +1,61 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="padre-boton">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <button on-click="TablaEvent">[[nombreboton1]]</button>
+    <button on-click="ListEvent">[[nombreboton2]]</button>
+  </template>
+
+  <script>
+    /**
+     * `padre-boton`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class PadreBoton extends Polymer.Element {
+      static get is() {
+        return 'padre-boton';
+      }
+      static get properties() {
+        return {
+          nombreboton1: {
+            type: String,
+            value: 'boton para tabla'
+          },
+          nombreboton2: {
+            type: String,
+            value: 'boton para liata'
+          }
+        };
+      }
+      TablaEvent() {
+        const EvTable = new CustomEvent('tabla', {
+          bubbles: true,
+          composed: true,
+          detail: 'evento tabla'
+        });
+        this.dispatchEvent(EvTable);
+        
+      }
+      ListEvent() {
+        const EvList = new CustomEvent('lista',{
+          bubbles: true,
+          composed: true,
+          detail: 'evento lista'
+        });
+        this.dispatchEvent(EvList);
+      }
+
+    }
+
+    window.customElements.define(PadreBoton.is, PadreBoton);
+  </script>
+</dom-module>
